@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Start a New Topic{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+  <li class="breadcrumb-item"><a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a></li>
+  <li class="breadcrumb-item active">New topic</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+  </form>
+{% endblock %}
+
+
+<!-- 
+This is a raw HTML form created by hand using the CSS classes provided by Bootstrap 4. 
+
+In the <form> tag, we have to define the method attribute. This instructs the browser on how we want to communicate with the server.
+
+GET is perhaps the most common request type. It’s used to retrieve data from the server. Every time you click on a link or type a URL directly into the browser, you are creating a GET request.
+
+POST is used when we want to change data on the server. So, generally speaking, every time we send data to the server that will result in a change in the state of a resource, we should always send it via POST request.
+
+Django protects all POST requests using a CSRF Token (Cross-Site Request Forgery Token). It’s a security measure to avoid external sites or applications to submit data to our application. Every time the application receives a POST, it will first look for the CSRF Token. If the request has no token, or the token is invalid, it will discard the posted data.
+
+from lecture 3
+-->
